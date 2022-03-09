@@ -9,7 +9,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => searchMovies("marvel"), []);
 
-  const API_URl = `http://www.omdbapi.com?apikey=${
+  const API_URl = `https://www.omdbapi.com?apikey=${
     import.meta.env.VITE_API_KEY
   }`;
 
