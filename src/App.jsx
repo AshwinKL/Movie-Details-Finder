@@ -2,11 +2,13 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import search from "./components/search.svg";
 import "./components/MovieCard";
-import MovieCard from "./components/MovieCard";
+import SearchResults from "./components/SearchResults";
+import ReactLoading from "react-loading";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => searchMovies("marvel"), []);
 
   const API_URl = `http://www.omdbapi.com?apikey=${
@@ -14,16 +16,18 @@ const App = () => {
   }`;
 
   const searchMovies = async (title) => {
+    setLoading(true);
     const response = await fetch(`${API_URl}&s=${title}`);
     const data = await response.json();
     setMovies(data.Search);
+    setLoading(false);
   };
 
   return (
     <div>
       <div className="app">
         <div className="h1-container">
-          <h1>Movie Details Finder</h1>
+          <h1>Movie Name Finder</h1>
         </div>
         <form
           className="search"
@@ -46,17 +50,10 @@ const App = () => {
             }}
           ></img>
         </form>
-        {movies?.length > 0 ? (
-          <div className="container">
-            {movies.map((el) => (
-              <MovieCard movie={el} key={el.imdbID} />
-            ))}
-            ;
-          </div>
+        {!loading ? (
+          <SearchResults movies={movies}></SearchResults>
         ) : (
-          <div className="empty">
-            <h2>No movies found</h2>
-          </div>
+          <ReactLoading type="spin" color="#f9d3b4" height={100} width={50} />
         )}
       </div>
       <footer className="footer">
