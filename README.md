@@ -36,6 +36,6 @@
 
 ## LIVE PREVIEW :
 
-[Click here]() for the live preview.
+[Click here](https://movie-name-finder.netlify.app/) for the live preview.
 
 Special thanks to [JavascriptMastery](https://www.youtube.com/c/JavaScriptMastery) for uploading this tutorial.
