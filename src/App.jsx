@@ -59,6 +59,7 @@ const App = () => {
       <footer className="footer">
         <p>Created with ❤ by Ashwin</p>
       </footer>
+      
     </div>
   );
 };
